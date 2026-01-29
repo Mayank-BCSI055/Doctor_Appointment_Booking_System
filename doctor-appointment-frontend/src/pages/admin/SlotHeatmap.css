@@ -1,0 +1,19 @@
+.slots {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.slot {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.slot.free {
+  background: #bbf7d0;
+}
+
+.slot.booked {
+  background: #ef4444;
+}

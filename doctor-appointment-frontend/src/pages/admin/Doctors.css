@@ -1,0 +1,36 @@
+.page {
+  padding: 24px;
+}
+
+.search {
+  padding: 8px 12px;
+  margin-bottom: 16px;
+  width: 280px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+th {
+  background: #f9fafb;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 6px 12px;
+}

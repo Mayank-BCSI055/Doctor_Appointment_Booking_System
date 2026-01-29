@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- GLOBAL ---------- */
+body {
+  @apply bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100;
+}
+
+/* ---------- FIXED NAVBAR OFFSET ---------- */
+/* Ensures content does NOT hide under fixed navbar */
+.main-content {
+  padding-top: 5rem; /* ~80px navbar height */
+}
+
+/* ---------- FADE IN ---------- */
+.animate-fade {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- SCROLL REVEAL ---------- */
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.reveal {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Fallback: never permanently hide content */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-hidden {
+    opacity: 1;
+    transform: none;
+  }
+}

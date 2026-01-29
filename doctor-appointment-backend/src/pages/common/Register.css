@@ -1,0 +1,292 @@
+/* ============================
+   Color Tokens
+============================ */
+
+:root {
+  --bg-page: #f5f7fa;
+  --bg-card: #ffffff;
+  --bg-input: #ffffff;
+
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-muted: #6b7280;
+
+  --border-default: #d1d5db;
+  --border-muted: #e5e7eb;
+
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.dark {
+  --bg-page: #0f172a;
+  --bg-card: #1f2937;
+  --bg-input: #374151;
+
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --text-muted: #9ca3af;
+
+  --border-default: #4b5563;
+  --border-muted: #374151;
+}
+
+/* ============================
+   Page Layout
+============================ */
+
+.auth-page {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-page);
+}
+
+/* ============================
+   Card
+============================ */
+
+.auth-card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: var(--shadow-card);
+  color: var(--text-primary);
+}
+
+.auth-card h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  font-weight: 650;
+}
+
+/* ============================
+   Inputs
+============================ */
+
+.auth-card input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 14px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.auth-card input::placeholder {
+  color: var(--text-muted);
+}
+
+.auth-card input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+input:required {
+  border-left: 3px solid #f39c12;
+}
+
+/* ============================
+   Primary Button
+============================ */
+
+.auth-card button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  background: var(--primary);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.05s ease;
+}
+
+.auth-card button:hover {
+  background: var(--primary-hover);
+}
+
+.auth-card button:active {
+  transform: scale(0.98);
+}
+
+.auth-card button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ============================
+   Subtext
+============================ */
+
+.auth-subtext {
+  margin-bottom: 16px;
+  font-size: 14px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+/* ============================
+   Google Button
+============================ */
+
+.google-btn {
+  width: 100%;
+  height: 46px;
+  border-radius: 8px;
+  border: 1px solid var(--border-default);
+  background: var(--bg-input);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s, transform 0.05s;
+}
+
+.google-btn img {
+  width: 18px;
+  height: 18px;
+}
+
+.google-btn:hover {
+  background: var(--border-muted);
+}
+
+.google-btn:active {
+  transform: scale(0.98);
+}
+
+.google-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ============================
+   Divider
+============================ */
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 18px 0;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border-muted);
+}
+
+.divider span {
+  margin: 0 10px;
+}
+
+/* ============================
+   Password Strength
+============================ */
+
+.password-strength {
+  margin-bottom: 12px;
+}
+
+.strength-bar {
+  height: 6px;
+  background: var(--border-muted);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.strength-fill {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.password-strength span {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ============================
+   Footer
+============================ */
+
+.auth-footer {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.auth-footer span {
+  color: var(--primary);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-footer span:hover {
+  text-decoration: underline;
+}
+
+/* =============================
+   Password Field Wrapper
+============================= */
+
+.password-field {
+  position: relative;
+}
+
+/* ==============================
+   Show / Hide Toggle 
+============================== */
+.toggle-password {
+  position: absolute;
+  right: 8px;
+  top: 35%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.toggle-password:hover {
+  opacity: 1;
+}
+
+/* ===============================
+   Password Rules Checklist 
+=============================== */
+.password-rules {
+  margin: 8px 0 12px;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+}
+
+.password-rules li {
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.password-rules li.passed {
+  color: #2ecc71;
+}

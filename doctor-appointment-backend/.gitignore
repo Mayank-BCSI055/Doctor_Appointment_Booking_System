@@ -1,0 +1,24 @@
+# Python
+env/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Alembic
+migrations/versions/__pycache__/
+
+# Node / frontend
+node_modules/
+dist/
+build/
+
+# Environment files
+.env
+.env.example
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db

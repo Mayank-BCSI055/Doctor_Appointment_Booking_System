@@ -1,0 +1,91 @@
+/* ---------- DOCTOR CARD ---------- */
+.doctor-card {
+  width: 22rem;
+  min-width: 18rem;
+  height: 22rem;
+
+  background: #ffffff;
+  border-radius: 1.25rem;
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: relative;
+  cursor: pointer;
+
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.doctor-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 45px rgba(0, 0, 0, 0.25);
+}
+
+/* Dark mode */
+.dark .doctor-card {
+  background: #1f2933;
+  box-shadow: 0 30px 45px rgba(0, 0, 0, 0.6);
+}
+
+/* ---------- FAVORITE ---------- */
+.doctor-favorite-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+/* ---------- AVATAR ---------- */
+.doctor-avatar {
+  width: 7.5rem;
+  height: 7.5rem;
+  border-radius: 50%;
+
+  background: rgba(37, 99, 235, 0.15);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2.5rem;
+}
+
+/* ---------- TEXT ---------- */
+.doctor-name {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.doctor-spec {
+  font-size: 1rem;
+  color: #6b7280;
+}
+
+.dark .doctor-spec {
+  color: #d1d5db;
+}
+
+.doctor-quote {
+  margin-top: 2.5rem;
+  font-style: italic;
+  text-align: center;
+  color: #4b5563;
+}
+
+.dark .doctor-quote {
+  color: #d1d5db;
+}
+
+.doctor-rating {
+  margin-top: auto;
+  color: #facc15;
+}

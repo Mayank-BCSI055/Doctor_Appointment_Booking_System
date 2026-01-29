@@ -1,0 +1,65 @@
+/* Page container */
+.my-appointments {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+/* Page title */
+.my-appointments h2 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Loading / empty state */
+.my-appointments p {
+  text-align: center;
+  color: #666;
+}
+
+/* Appointment list */
+.appointment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Single appointment card */
+.appointment-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Appointment details */
+.appointment-card div {
+  margin-bottom: 0.3rem;
+}
+
+/* Status text */
+.appointment-status {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+/* Cancel button */
+.cancel-btn {
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background-color: #e53935;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  background-color: #c62828;
+}
+
+.cancel-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
