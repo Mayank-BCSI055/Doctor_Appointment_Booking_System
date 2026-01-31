@@ -54,23 +54,14 @@ export default function Navbar() {
   };
 
   /* =========================
-     CONTACT → BOTTOM
+     CONTACT
      ========================= */
   const handleContactClick = () => {
-    if (location.pathname !== "/") {
-      navigate("/");
-      setTimeout(() => {
-        document
-          .getElementById("contact")
-          ?.scrollIntoView({ behavior: "smooth" });
-      }, 150);
-    } else {
-      document
-        .getElementById("contact")
-        ?.scrollIntoView({ behavior: "smooth" });
+    if (location.pathname !== "/contact") {
+      navigate("/contact");
     }
-  };
-
+  }
+  
   return (
     <nav className={`navbar ${isHome ? "navbar-fixed" : ""}`}>
       {/* LEFT */}

@@ -1,41 +1,49 @@
-from flask import request, jsonify
-from werkzeug.security import check_password_hash
-from app.database import db
+from flask import request
 
+from app.extensions import db
 from app.models.user_model import User
 from app.auth.jwt_utils import generate_token
+from app.auth.password_utils import verify_password
+from app.routes.auth import auth_bp
+from app.utils.response_utils import success, error
+from app.utils.validation_utils import require_fields, validate_email
 
-def register_login_routes(app):
 
-    @app.route("/api/login", methods=["POST"])
-    def login():
-        data = request.get_json()
+@auth_bp.route("/login", methods=["POST"])
+def login():
+    data = request.get_json() or {}
 
-        email = data.get("email")
-        password = data.get("password")
+    try:
+        require_fields(data, ["email", "password"])
+        validate_email(data["email"])
+    except Exception as e:
+        return error(str(e), 400)
 
-        if not email or not password:
-            return {"message": "Email and password are required"}, 400
+    email = data["email"].lower()
 
-        email = email.lower()
+    user = db.session.query(User).filter(User.email == email).first()
 
-        user = User.query.filter_by(email=email).first()
+    if not user:
+        return error("Invalid email or password", 401)
 
-        if not user:
-            return {"error": "User not found"}, 404
+    if not user.is_active:
+        return error("Account is disabled", 403)
 
-        if not check_password_hash(user.password_hash, password):
-            return {"error": "Invalid credentials"}, 401
+    if not verify_password(user.password_hash, data["password"]):
+        return error("Invalid email or password", 401)
 
-        # ONLY generate JWT
-        token = generate_token(user)
+    token = generate_token(user)
 
-        return jsonify({
+    return success(
+        data={
             "user": {
                 "id": user.id,
                 "name": user.name,
                 "email": user.email,
-                "role": user.role
+                "role": user.role.value,
             },
-            "token": token
-        }), 200
+            "access_token": token,
+        },
+        message="Login successful",
+        status=200,
+    )

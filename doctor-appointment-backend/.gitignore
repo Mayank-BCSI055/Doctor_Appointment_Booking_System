@@ -16,7 +16,6 @@ build/
 
 # Environment files
 .env
-.env.example
 .env.*
 
 # OS

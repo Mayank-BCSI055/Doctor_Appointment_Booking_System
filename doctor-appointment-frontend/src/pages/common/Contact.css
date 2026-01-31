@@ -1,0 +1,173 @@
+/* =============================
+   MEDICAL THEME VARIABLES
+   ============================= */
+
+:root {
+  --medical-blue: #2563eb;
+  --medical-blue-dark: #1e40af;
+  --medical-bg: #ffffff;
+  --medical-card: #ffffff;
+  --medical-text: #0f172a;
+  --medical-muted: #64748b;
+  --medical-border: #e2e8f0;
+  --medical-success-bg: #ecfdf5;
+  --medical-success-text: #065f46;
+  --medical-error-bg: #fee2e2;
+  --medical-error-text: #991b1b;
+  --medical-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+}
+
+.dark {
+  --medical-bg: #020617;
+  --medical-card: #020617;
+  --medical-text: #e5e7eb;
+  --medical-muted: #94a3b8;
+  --medical-border: #1e293b;
+  --medical-shadow: 0 14px 45px rgba(0, 0, 0, 0.65);
+}
+
+/* =============================
+   PAGE LAYOUT
+   ============================= */
+
+.contact-container {
+  max-width: 640px;
+  margin: 90px auto;
+  padding: 42px;
+  background: var(--medical-card);
+  border-radius: 18px;
+  border: 1px solid var(--medical-border);
+  box-shadow: var(--medical-shadow);
+}
+
+/* =============================
+   HEADINGS
+   ============================= */
+
+.contact-title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--medical-text);
+  margin-bottom: 10px;
+}
+
+.contact-subtitle {
+  text-align: center;
+  font-size: 15px;
+  color: var(--medical-muted);
+  margin-bottom: 36px;
+  line-height: 1.6;
+}
+
+/* =============================
+   ALERTS
+   ============================= */
+
+.contact-success {
+  background: var(--medical-success-bg);
+  color: var(--medical-success-text);
+  padding: 14px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 24px;
+  font-weight: 600;
+  border: 1px solid #a7f3d0;
+}
+
+.contact-error {
+  background: var(--medical-error-bg);
+  color: var(--medical-error-text);
+  padding: 14px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 24px;
+  font-weight: 600;
+  border: 1px solid #fecaca;
+}
+
+/* =============================
+   FORM
+   ============================= */
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 14px 16px;
+  font-size: 15px;
+  border-radius: 12px;
+  border: 1px solid var(--medical-border);
+  background: transparent;
+  color: var(--medical-text);
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* focus ring */
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--medical-blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* placeholders */
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--medical-muted);
+}
+
+/* =============================
+   SUBMIT BUTTON
+   ============================= */
+
+.contact-form button {
+  margin-top: 10px;
+  padding: 16px;
+  border-radius: 14px;
+  border: none;
+  background: var(--medical-blue);
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.contact-form button:hover {
+  background: var(--medical-blue-dark);
+}
+
+.contact-form button:active {
+  transform: scale(0.97);
+}
+
+.contact-form button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* =============================
+   MOBILE
+   ============================= */
+
+@media (max-width: 640px) {
+  .contact-container {
+    margin: 50px 16px;
+    padding: 28px;
+  }
+
+  .contact-title {
+    font-size: 24px;
+  }
+}

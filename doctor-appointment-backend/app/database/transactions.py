@@ -1,12 +1,20 @@
-from app.database import db
+from functools import wraps
+from app.extensions import db
+
 
 def atomic(fn):
+    """
+    Use ONLY for very small, isolated operations.
+    DO NOT use for booking, availability, or multi-step logic.
+    """
+    @wraps(fn)
     def wrapper(*args, **kwargs):
         try:
             result = fn(*args, **kwargs)
             db.session.commit()
             return result
-        except Exception as e:
+        except Exception:
             db.session.rollback()
-            raise e
+            raise
+
     return wrapper

@@ -1,53 +1,57 @@
 from flask import request
+
 from app.routes.patient import patient_bp
-from app.models.doctor_model import Doctor
-from app.models.availability_model import AvailabilitySlot
-from app.models.appointment_model import Appointment
+from app.services.browse_service import (
+    list_active_doctors,
+    list_available_slots,
+)
 from app.utils.response_utils import success, error
+from app.utils.validation_utils import validate_positive_int
 
 
 @patient_bp.route("/doctors", methods=["GET"])
 def list_doctors():
-    doctors = Doctor.query.filter_by(is_active=True).all()
+    doctors = list_active_doctors()
 
-    data = []
-    for d in doctors:
-        data.append({
+    data = [
+        {
             "id": d.id,
             "name": d.name,
             "specialization": d.specialization,
             "experience": d.experience,
-            "consultation_duration": d.consultation_duration
-        })
+            "consultation_duration": d.consultation_duration,
+        }
+        for d in doctors
+    ]
 
     return success(data=data)
 
 
 @patient_bp.route("/slots", methods=["GET"])
 def list_slots():
-    doctor_id = request.args.get("doctor_id")
+    doctor_id_param = request.args.get("doctor_id")
 
-    if not doctor_id:
+    if doctor_id_param is None:
         return error("doctor_id is required", 400)
 
-    slots = AvailabilitySlot.query.filter_by(
-        doctor_id=doctor_id,
-        is_active=True
-    ).all()
+    try:
+        doctor_id = int(doctor_id_param)
+        validate_positive_int(doctor_id, "doctor_id")
+    except ValueError:
+        return error("doctor_id must be a valid integer", 400)
+    except Exception as e:
+        return error(str(e), 400)
 
-    booked_slot_ids = {
-        a.slot_id for a in Appointment.query.filter_by(status="booked").all()
-    }
+    slots = list_available_slots(doctor_id=doctor_id)
 
-    available_slots = [s for s in slots if s.id not in booked_slot_ids]
-
-    data = []
-    for s in available_slots:
-        data.append({
+    data = [
+        {
             "id": s.id,
-            "date": s.date,
-            "start_time": s.start_time,
-            "end_time": s.end_time
-        })
+            "slot_date": s.slot_date.isoformat(),
+            "start_time": s.start_time.strftime("%H:%M"),
+            "end_time": s.end_time.strftime("%H:%M"),
+        }
+        for s in slots
+    ]
 
     return success(data=data)

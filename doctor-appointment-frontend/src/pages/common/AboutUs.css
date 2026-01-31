@@ -1,0 +1,147 @@
+/* =============================
+   MEDICAL THEME VARIABLES
+   ============================= */
+
+:root {
+  --medical-blue: #2563eb;
+  --medical-blue-dark: #1e40af;
+  --medical-bg: #ffffff;
+  --medical-card: #ffffff;
+  --medical-text: #0f172a;
+  --medical-muted: #64748b;
+  --medical-border: #e2e8f0;
+  --medical-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+.dark {
+  --medical-bg: #020617;
+  --medical-card: #020617;
+  --medical-text: #e5e7eb;
+  --medical-muted: #94a3b8;
+  --medical-border: #1e293b;
+  --medical-shadow: 0 16px 50px rgba(0, 0, 0, 0.65);
+}
+
+/* =============================
+   PAGE LAYOUT
+   ============================= */
+
+.about-container {
+  background: var(--medical-bg);
+  color: var(--medical-text);
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+
+/* =============================
+   HERO SECTION
+   ============================= */
+
+.about-hero {
+  text-align: center;
+  padding: 90px 20px 70px;
+  background: linear-gradient(
+    180deg,
+    rgba(37, 99, 235, 0.08),
+    transparent
+  );
+}
+
+.about-hero h1 {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--medical-text);
+}
+
+.about-hero p {
+  font-size: 17px;
+  color: var(--medical-muted);
+  max-width: 720px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* =============================
+   CONTENT
+   ============================= */
+
+.about-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+}
+
+.about-card {
+  background: var(--medical-card);
+  border: 1px solid var(--medical-border);
+  border-radius: 18px;
+  padding: 32px;
+  box-shadow: var(--medical-shadow);
+  transition: transform 0.15s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-4px);
+}
+
+.about-card h2 {
+  font-size: 22px;
+  margin-bottom: 14px;
+  color: var(--medical-blue);
+}
+
+.about-card p {
+  color: var(--medical-muted);
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+.about-card ul {
+  padding-left: 18px;
+  margin-top: 10px;
+}
+
+.about-card li {
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: var(--medical-muted);
+}
+
+/* =============================
+   FOOTER MESSAGE
+   ============================= */
+
+.about-footer {
+  text-align: center;
+  margin-top: 60px;
+  padding: 50px 20px 0;
+}
+
+.about-footer h3 {
+  font-size: 24px;
+  color: var(--medical-blue);
+  margin-bottom: 8px;
+}
+
+.about-footer p {
+  color: var(--medical-muted);
+  font-size: 15px;
+}
+
+/* =============================
+   MOBILE
+   ============================= */
+
+@media (max-width: 640px) {
+  .about-hero h1 {
+    font-size: 28px;
+  }
+
+  .about-card {
+    padding: 26px;
+  }
+}

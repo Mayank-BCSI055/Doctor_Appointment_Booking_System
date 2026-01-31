@@ -1,4 +1,4 @@
- HEAD
+
 # Doctor Appointment Frontend (skeleton)
 This repo contains a minimal React frontend scaffold matching the structure provided in the project diagram and report.
 Files are intentionally lightweight skeletons so you can plug in your backend quickly.
@@ -250,5 +250,4 @@ Your Team Name
 
 [ Intern Python Team ]
 
-( Mayank Baranwal
-Nikhil Patwardhan )
+( Mayank Baranwal )

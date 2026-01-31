@@ -1,14 +1,17 @@
- HEAD
+
 # Doctor Appointment Frontend (skeleton)
+
 This repo contains a minimal React frontend scaffold matching the structure provided in the project diagram and report.
 Files are intentionally lightweight skeletons so you can plug in your backend quickly.
 
 How to run:
+
 1. Install deps: `npm install`
 2. Run: `npm run dev`
 Backend: The api endpoints referenced (e.g. /api/auth/login) are expected from your backend. For quick testing, either run a mock server or modify the api calls to return mocked responses.
 
 Files created mirror the requested structure and include:
+
 - src/main.jsx, src/App.jsx
 - src/api/* (axiosInstance, auth.api, admin.api, patient.api)
 - src/auth/* (AuthContext, useAuth, ProtectedRoute)
@@ -27,6 +30,7 @@ A React-based frontend application for the Doctor Appointment Booking System.
 ## Features
 
 ### Admin Dashboard
+
 - Manage doctor profiles (Create, Update, Activate/Deactivate)
 - Manage availability slots
 - View all appointments
@@ -34,6 +38,7 @@ A React-based frontend application for the Doctor Appointment Booking System.
 - Complete appointments
 
 ### Patient Dashboard
+
 - Browse active doctors
 - View doctor profiles and specializations
 - Book appointments from available slots
@@ -68,6 +73,7 @@ src/
 ## Setup Instructions
 
 ### Prerequisites
+
 - Node.js (v16 or higher)
 - npm or yarn
 - Backend API running (default: http://localhost:5000)
@@ -111,6 +117,7 @@ npm run build
 ## User Roles
 
 ### ADMIN
+
 - **Login**: Use the pre-configured admin credentials from backend
 - **Capabilities**: 
   - Full doctor management
@@ -119,6 +126,7 @@ npm run build
   - Cancel/Complete any appointment
 
 ### PATIENT
+
 - **Registration**: Self-registration available
 - **Capabilities**:
   - Browse doctors
@@ -131,10 +139,12 @@ npm run build
 The frontend communicates with the backend through RESTful APIs:
 
 ### Authentication
+
 - `POST /api/auth/register` - Patient registration
 - `POST /api/auth/login` - User login
 
 ### Doctors (Patient: Read-only, Admin: Full access)
+
 - `GET /api/doctors` - Get all doctors
 - `GET /api/doctors/active` - Get active doctors
 - `POST /api/doctors` - Create doctor (Admin)
@@ -143,12 +153,14 @@ The frontend communicates with the backend through RESTful APIs:
 - `DELETE /api/doctors/:id` - Delete doctor (Admin)
 
 ### Slots (Patient: Read-only, Admin: Full access)
+
 - `GET /api/slots/doctor/:doctorId` - Get doctor slots
 - `GET /api/slots/doctor/:doctorId/available` - Get available slots
 - `POST /api/slots` - Create slot (Admin)
 - `DELETE /api/slots/:id` - Delete slot (Admin)
 
 ### Appointments
+
 - `POST /api/appointments` - Book appointment (Patient)
 - `GET /api/appointments/my-appointments` - Get user's appointments (Patient)
 - `GET /api/appointments` - Get all appointments (Admin)
@@ -158,6 +170,7 @@ The frontend communicates with the backend through RESTful APIs:
 ## Key Features Implementation
 
 ### Authentication & Authorization
+
 - JWT-based authentication
 - Token stored in localStorage
 - Automatic token injection in API requests
@@ -165,12 +178,14 @@ The frontend communicates with the backend through RESTful APIs:
 - Auto-redirect on authentication failure
 
 ### Transaction Safety
+
 - Optimistic UI updates
 - Error handling and rollback
 - Loading states for all async operations
 - Confirmation dialogs for destructive actions
 
 ### User Experience
+
 - Responsive design (mobile, tablet, desktop)
 - Loading indicators
 - Success/Error notifications
@@ -178,6 +193,7 @@ The frontend communicates with the backend through RESTful APIs:
 - Intuitive navigation
 
 ### Security
+
 - Protected routes
 - Role-based access control
 - Token expiration handling
@@ -186,17 +202,20 @@ The frontend communicates with the backend through RESTful APIs:
 ## Development Guidelines
 
 ### Code Style
+
 - Use functional components with hooks
 - Follow React best practices
 - Use Tailwind utility classes
 - Keep components modular and reusable
 
 ### State Management
+
 - Local state with useState
 - API calls with useEffect
 - Form handling with controlled components
 
 ### Error Handling
+
 - Try-catch blocks for async operations
 - User-friendly error messages
 - Graceful degradation
@@ -211,11 +230,13 @@ npm test
 ## Deployment
 
 ### Build
+
 ```bash
 npm run build
 ```
 
 ### Deploy to Static Hosting
+
 The `build` folder can be deployed to:
 - Netlify
 - Vercel
@@ -224,6 +245,7 @@ The `build` folder can be deployed to:
 - Any static hosting service
 
 ### Environment Configuration
+
 Ensure production environment variables are set:
 ```
 REACT_APP_API_URL=https://your-production-api.com/api
@@ -232,12 +254,15 @@ REACT_APP_API_URL=https://your-production-api.com/api
 ## Troubleshooting
 
 ### CORS Issues
+
 Ensure backend CORS configuration allows frontend origin.
 
 ### 401 Unauthorized
+
 Check if token is valid and not expired. Try logging out and logging in again.
 
 ### API Connection Failed
+
 Verify backend is running and API_URL is correct in `.env`.
 
 ## License
@@ -250,5 +275,4 @@ Your Team Name
 
 [ Intern Python Team ]
 
-( Mayank Baranwal
-Nikhil Patwardhan )
+( Mayank Baranwal )

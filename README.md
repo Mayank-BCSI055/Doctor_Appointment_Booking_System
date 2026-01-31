@@ -79,20 +79,26 @@ uvicorn run:app --reload
 Backend will run at:
 
 http://127.0.0.1:8000
-🔹 Frontend Setup
+
+
+### 🔹 Frontend Setup
 cd doctor-appointment-frontend
 npm install
 npm start
 Frontend will run at:
 
 http://localhost:3000
+
+
 🔐 Environment Variables
+
 Create a .env file in the backend directory:
 
 DATABASE_URL=postgresql://username:password@localhost/dbname
 SECRET_KEY=your_secret_key
 ALGORITHM=HS256
 ACCESS_TOKEN_EXPIRE_MINUTES=60
+
 🌐 Deployment
 Backend: Render
 
@@ -101,15 +107,20 @@ Frontend: Netlify or Render Static Site
 Backend Start Command on Render:
 
 uvicorn run:app --host 0.0.0.0 --port 10000
+
 🧪 API Documentation
+
 FastAPI automatically provides API docs:
 
 http://localhost:8000/docs
+
 or
 
 http://localhost:8000/redoc
+
+
 👨‍💻 Author
-Mayank
+Mayank Baranwal
 Roll No: BCSI055
 Course: B.Tech Computer Science
 

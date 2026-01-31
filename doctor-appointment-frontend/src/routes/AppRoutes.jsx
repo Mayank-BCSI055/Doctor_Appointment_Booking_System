@@ -3,7 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "../auth/ProtectedRoutes.jsx";
 import PublicRoute from "../auth/PublicRoutes.jsx";
 
+/* Common pages */
 import Home from "../pages/common/Home.jsx";
+import Contact from "../pages/common/Contact.jsx";
 import Login from "../pages/common/Login.jsx";
 import Register from "../pages/common/Register.jsx";
 import Unauthorized from "../components/common/Unauthorized.jsx";
@@ -23,9 +25,13 @@ import MyAppointments from "../pages/patient/MyAppointments";
 export default function AppRoutes() {
   return (
     <Routes>
+
       {/* Public */}
       <Route path="/" element={<Home />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/about" element={<AboutUs />} />
 
+      {/* Auth */}
       <Route
         path="/login"
         element={
@@ -34,7 +40,6 @@ export default function AppRoutes() {
           </PublicRoute>
         }
       />
-
       <Route
         path="/register"
         element={
@@ -63,6 +68,7 @@ export default function AppRoutes() {
       </Route>
 
       <Route path="/unauthorized" element={<Unauthorized />} />
+      
     </Routes>
   );
 }

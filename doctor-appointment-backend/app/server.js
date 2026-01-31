@@ -1,30 +1,52 @@
 const express = require("express");
 const cors = require("cors");
-
-const authRoutes = require("./routes/auth");
-const adminRoutes = require("./routes/admin");
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
 const app = express();
 
-// ✅ CORS FIX
+// --------------------
+// Environment
+// --------------------
+const PORT = process.env.PORT || 10000;
+const FLASK_BACKEND_URL =
+  process.env.FLASK_BACKEND_URL || "http://localhost:10000";
+
+// --------------------
+// CORS (Render + Prod Safe)
+// --------------------
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: process.env.CORS_ORIGINS
+      ? process.env.CORS_ORIGINS.split(",")
+      : "*",
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"]
   })
 );
 
-app.options("*", cors());
-
 app.use(express.json());
 
-// routes
-app.use("/auth", authRoutes);
-app.use("/admin", adminRoutes);
+// --------------------
+// Health Check
+// --------------------
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "node-proxy-ok" });
+});
 
-const PORT = 5000;
-app.listen(PORT, () =>
-  console.log(`Server running on port ${PORT}`)
+// --------------------
+// Proxy ALL API traffic to Flask
+// --------------------
+app.use(
+  "/api",
+  createProxyMiddleware({
+    target: FLASK_BACKEND_URL,
+    changeOrigin: true,
+    secure: true,
+  })
 );
+
+// --------------------
+// Start Server
+// --------------------
+app.listen(PORT, () => {
+  console.log(`🟢 Node proxy running on port ${PORT}`);
+});

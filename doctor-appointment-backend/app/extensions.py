@@ -2,6 +2,12 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
 
-db = SQLAlchemy()
+db = SQLAlchemy(
+    engine_options={
+        "pool_pre_ping": True,
+        "pool_recycle": 300,
+    }
+)
+
 migrate = Migrate()
 jwt = JWTManager()

@@ -1,42 +1,53 @@
 from flask import request
 from sqlalchemy.exc import IntegrityError
-from app.database import db
 
+from app.extensions import db
 from app.models.user_model import User, Role
-from app.routes.patient.__init__ import patient_bp
+from app.routes.auth import auth_bp
+from app.utils.response_utils import success, error
+from app.utils.validation_utils import (
+    require_fields,
+    validate_email,
+    validate_password,
+)
 
-@patient_bp.route("/register", methods=["POST"])
-def patient_register():
-    data = request.get_json()
 
-    name = data.get("name")
-    email = data.get("email").lower()
-    password = data.get("password")
+@auth_bp.route("/register", methods=["POST"])
+def register_patient():
+    data = request.get_json() or {}
 
-    # 1️⃣ Basic validation
-    if not name or not email or not password:
-        return {"message": "Name, email, and password are required"}, 400
+    try:
+        # Validate input
+        require_fields(data, ["name", "email", "password"])
+        validate_email(data["email"])
+        validate_password(data["password"])
+    except Exception as e:
+        return error(str(e), 400)
 
-    # 2️⃣ CHECK IF USER ALREADY EXISTS
-    existing_user = User.query.filter_by(email=email).first()
-    if existing_user:
-        return {"message": "Email already registered"}, 409
-    
-    # 3️⃣ Create new user
+    email = data["email"].lower()
+
+    # Check if user already exists
+    if db.session.query(User).filter(User.email == email).first():
+        return error("Email already registered", 409)
+
     try:
         user = User(
-            name=name,
-            email=email,
-            role=Role.PATIENT.value
+            name=data["name"],                                                              # type: ignore
+            email=email,                                                                    # type: ignore
+            role=Role.PATIENT,                                                              # type: ignore
+            is_active=True,                                                                 # type: ignore
         )
-        user.set_password(password)
+        user.set_password(data["password"])
 
         db.session.add(user)
         db.session.commit()
 
-        return {"message": "Patient registered successfully"}, 201
+        return success(
+            message="Patient registered successfully",
+            status=201,
+        )
 
-    # 4️⃣ Safety net (race condition)
     except IntegrityError:
         db.session.rollback()
-        return {"message": "Email already registered"}, 409
+        return error("Email already registered", 409)
+

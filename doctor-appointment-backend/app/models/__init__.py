@@ -1,6 +1,6 @@
-from app.database import db
+from app.extensions import db
 
-# Import all models so SQLAlchemy and Alembic can see them
+# Import all models so SQLAlchemy and Alembic can detect them
 from app.models.user_model import User
 from app.models.doctor_model import Doctor
 from app.models.availability_model import AvailabilitySlot

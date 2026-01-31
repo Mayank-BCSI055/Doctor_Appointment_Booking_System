@@ -4,3 +4,7 @@ flask_migrate
 flask-jwt-extended 
 python-dotenv
 flask_cors
+supabase
+uvicorn
+fastapi
+

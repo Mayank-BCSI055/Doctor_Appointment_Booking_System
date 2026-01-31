@@ -1,22 +1,40 @@
-from app.database import db
-
+from app.extensions import db
 from app.models.availability_model import AvailabilitySlot
 from app.models.appointment_model import Appointment
-from app.database.transactions import atomic
+from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy import select
 
-@atomic
+
 def book_slot(user_id, slot_id):
-    slot = AvailabilitySlot.query.with_for_update().get(slot_id)
+    try:
+        # 🔒 Lock the slot row (PostgreSQL-safe)
+        slot = (
+            db.session.execute(
+                select(AvailabilitySlot)
+                .where(AvailabilitySlot.id == slot_id)
+                .with_for_update()
+            )
+            .scalars()
+            .first()
+        )
 
-    if not slot or slot.is_booked:
-        raise ValueError("Slot unavailable")
+        if not slot or slot.is_booked:
+            raise ValueError("Slot unavailable")
 
-    slot.is_booked = True
-    appointment = Appointment(
-        user_id=user_id,
-        doctor_id=slot.doctor_id,
-        slot_id=slot.id
-    )
+        # Mark slot as booked
+        slot.is_booked = True
 
-    db.session.add(appointment)
-    return appointment
+        appointment = Appointment(
+            user_id=user_id,                                                            # type: ignore
+            doctor_id=slot.doctor_id,                                                   # type: ignore
+            slot_id=slot.id,                                                            # type: ignore
+        )
+
+        db.session.add(appointment)
+        db.session.commit()
+
+        return appointment
+
+    except SQLAlchemyError as e:
+        db.session.rollback()
+        raise e

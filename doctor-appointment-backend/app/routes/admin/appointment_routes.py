@@ -1,46 +1,55 @@
 from app.routes.admin import admin_bp
 from app.auth.decorators import admin_required
-from app.models.appointment_model import Appointment
-from app.database import db
-from app.utils.response_utils import success
+from app.services.appointment_service import (
+    get_doctor_appointments,
+    cancel_appointment,
+    complete_appointment,
+)
+from app.utils.response_utils import success, error
 
 
 @admin_bp.route("/appointments", methods=["GET"])
 @admin_required
 def get_all_appointments():
-    appointments = Appointment.query.all()
+    """
+    Admin: view all appointments (across doctors).
+    """
+    # Admin can see all, reuse service logic
+    appointments = get_doctor_appointments(doctor_id=None)
 
-    data = []
-    for a in appointments:
-        data.append({
+    data = [
+        {
             "id": a.id,
             "user_id": a.user_id,
             "doctor_id": a.doctor_id,
             "slot_id": a.slot_id,
-            "status": a.status,
-            "booked_at": a.booked_at.isoformat()
-        })
+            "status": a.status.value,
+            "booked_at": a.booked_at.isoformat(),
+        }
+        for a in appointments
+    ]
 
     return success(data=data)
 
 
 @admin_bp.route("/appointments/<int:appointment_id>/cancel", methods=["PUT"])
 @admin_required
-def cancel_appointment(appointment_id):
-    appointment = Appointment.query.get_or_404(appointment_id)
+def admin_cancel_appointment(appointment_id):
+    try:
+        appointment = cancel_appointment(appointment_id)
+        return success(message="Appointment cancelled")
 
-    appointment.status = "cancelled"
-    db.session.commit()
-
-    return success(message="Appointment cancelled")
+    except Exception as e:
+        return error(str(e), 400)
 
 
 @admin_bp.route("/appointments/<int:appointment_id>/complete", methods=["PUT"])
 @admin_required
-def complete_appointment(appointment_id):
-    appointment = Appointment.query.get_or_404(appointment_id)
+def admin_complete_appointment(appointment_id):
+    try:
+        appointment = complete_appointment(appointment_id)
+        return success(message="Appointment completed")
 
-    appointment.status = "completed"
-    db.session.commit()
+    except Exception as e:
+        return error(str(e), 400)
 
-    return success(message="Appointment completed")
