@@ -7,4 +7,4 @@ flask_cors
 supabase
 uvicorn
 fastapi
-
+psycopg2-binary
