@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
+/* Route Guards */
 import ProtectedRoute from "../auth/ProtectedRoutes.jsx";
 import PublicRoute from "../auth/PublicRoutes.jsx";
 

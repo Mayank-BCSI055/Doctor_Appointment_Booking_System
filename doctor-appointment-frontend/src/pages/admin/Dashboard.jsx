@@ -1,13 +1,13 @@
-import { useEffect, useState , useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../api/axiosInstance";
 import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
+  LineChart, 
+  Line, 
+  XAxis, 
+  YAxis, 
+  Tooltip, 
+  ResponsiveContainer
 } from "recharts";
 import "./Dashboard.css";
 
@@ -30,10 +30,6 @@ export default function Dashboard() {
   const [alerts, setAlerts] = useState([]);
   const [health, setHealth] = useState({});
   const [audits, setAudits] = useState([]);
-
-  useEffect(() => {
-    loadDashboard();
-  }, [range]);
 
   const loadDashboard = useCallback(async () => {
     setLoading(true);
