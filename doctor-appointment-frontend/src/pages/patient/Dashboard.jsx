@@ -13,7 +13,7 @@ export default function PatientDashboard() {
   const [loading, setLoading] = useState(true);
 
   /* =========================
-     FETCH APPOINTMENTS
+      FETCH APPOINTMENTS
      ========================= */
   useEffect(() => {
     let mounted = true;
