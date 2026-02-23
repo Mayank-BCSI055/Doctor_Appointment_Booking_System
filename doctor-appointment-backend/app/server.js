@@ -8,12 +8,11 @@ const app = express();
 // Environment
 // --------------------
 const PORT = process.env.PORT || 10000;
-const FLASK_BACKEND_URL =
-  process.env.FLASK_BACKEND_URL || "http://localhost:10000";
+const FLASK_BACKEND_URL = process.env.FLASK_BACKEND_URL || "http://localhost:10000";
 
-// --------------------
+// -------------------------------
 // CORS (Render + Prod Safe)
-// --------------------
+// -------------------------------
 app.use(
   cors({
     origin: process.env.CORS_ORIGINS
@@ -32,9 +31,9 @@ app.get("/health", (req, res) => {
   res.status(200).json({ status: "node-proxy-ok" });
 });
 
-// --------------------
+// ----------------------------------
 // Proxy ALL API traffic to Flask
-// --------------------
+// ----------------------------------
 app.use(
   "/api",
   createProxyMiddleware({

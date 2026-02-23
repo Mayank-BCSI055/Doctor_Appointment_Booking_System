@@ -1,3 +1,5 @@
+
+---------------------------------
 Doctor Appointment Booking System
 ---------------------------------
 
@@ -23,3 +25,79 @@ Backend :
   
 - python run.py
 
+APIs :
+
+  Map([
+
+=  
+-  <Rule '/static/<filename>' (OPTIONS, HEAD, GET) -> static>,
+
+=  LOGIN
+-  <Rule '/api/login' (OPTIONS, POST) -> auth.login>,
+
+=  REGISTER
+-  <Rule '/api/register' (OPTIONS, POST) -> auth.register_patient>,
+
+=  ADMIN - DOCTOR
+-  <Rule '/api/admin/doctors' (OPTIONS, POST) -> admin.add_doctor>,
+
+=  ADMIN - SLOT
+-  <Rule '/api/admin/slots' (OPTIONS, POST) -> admin.add_slot>,
+
+=  ADMIN - APPOINTMENT
+-  <Rule '/api/admin/appointments' (OPTIONS, HEAD, GET) -> admin.get_all_appointments>,
+
+=  ADMIN - APPOINTMENT - CANCEL
+-  <Rule '/api/admin/appointments/<appointment_id>/cancel' (OPTIONS, PUT) -> admin.admin_cancel_appointment>,
+
+=  ADMIN - APPOINTMENT - COMPLETE
+-  <Rule '/api/admin/appointments/<appointment_id>/complete' (OPTIONS, PUT) -> admin.admin_complete_appointment>,
+
+=  PATIENT - BOOK APPOINTMENT
+-  <Rule '/api/patient/appointments' (OPTIONS, POST) -> patient.book_appointment>,
+
+=  PATIENT - MY APPOINTMENTS
+-  <Rule '/api/patient/appointments' (OPTIONS, HEAD, GET) -> patient.my_appointments>,
+
+=  PATIENT - CANCEL APPOINTMENT
+-  <Rule '/api/patient/appointments/<appointment_id>' (DELETE, OPTIONS) -> patient.cancel_my_appointment>,
+
+=  PATIENT - DOCTORS
+-  <Rule '/api/patient/doctors' (OPTIONS, HEAD, GET) -> patient.list_doctors>,
+
+=  PATIENT - SLOTS
+-  <Rule '/api/patient/slots' (OPTIONS, HEAD, GET) -> patient.list_slots>,
+
+=  PATIENT - PROFILE
+-  <Rule '/api/patient/profile' (OPTIONS, HEAD, GET) -> patient.get_profile>,
+
+=  PATIENT - UPDATE PROFILE
+-  <Rule '/api/patient/profile' (OPTIONS, PUT) -> patient.update_profile>,
+
+=  QUICK SANITY CHECK
+-  <Rule '/ping' (OPTIONS, HEAD, GET) -> ping>,
+
+=  HEALTH CHECK
+-  <Rule '/health' (OPTIONS, HEAD, GET) -> health>
+
+  ])
+
+=================================================================================================
+
+# type: ignore
+
+backend architecture (Flask + JWT + Supabase + Render)
+
+---------------------------------------------------------------------------------------------------
+
+Common encodings:
+
+  Character	Encoded
+      @   	%40
+      :   	%3A
+      /   	%2F
+      #   	%23
+
+  Note: While using special characters in the DATABASE_URL, ensure they are URL-encoded as shown above.
+
+------------------------------------------------------------------------------------------------------

@@ -1,6 +1,5 @@
 from flask import jsonify
 
-
 def success(data=None, message: str | None = None, status: int = 200):
     """
     Standard success response.
@@ -15,7 +14,6 @@ def success(data=None, message: str | None = None, status: int = 200):
         ),
         status,
     )
-
 
 def error(message: str, status: int = 400, data=None):
     """

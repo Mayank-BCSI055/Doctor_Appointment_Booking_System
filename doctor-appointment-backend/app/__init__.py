@@ -4,6 +4,7 @@ from flask_cors import CORS
 import logging
 import os
 
+
 from app.extensions import db, jwt
 from app.config import Config
 from app.routes import register_routes
@@ -15,6 +16,7 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
+
     # --------------------
     # Logging
     # --------------------
@@ -23,6 +25,7 @@ def create_app():
         format="🩺 [%(asctime)s] %(levelname)s → %(message)s",
         datefmt="%H:%M:%S"
     )
+
 
     # --------------------
     # CORS
@@ -38,6 +41,7 @@ def create_app():
         allow_headers=["Content-Type", "Authorization"],
     )
 
+
     # --------------------
     # Extensions
     # --------------------
@@ -45,17 +49,37 @@ def create_app():
     jwt.init_app(app)
     Migrate(app, db)
 
+
     # --------------------
     # Routes
     # --------------------
     register_routes(app)
 
-    # --------------------
-    # Health Check
-    # --------------------
+
+    # -------------------------------------------------------------
+    # Quick Sanity Check    {/* http://127.0.0.1:5000/ping */}
+    # -------------------------------------------------------------
+    @app.route("/ping", methods=["GET"])
+    def ping():
+        return {
+            "success": True,
+            "message": "Backend is alive.",
+            "data": None
+        },200
+
+
+    # ------------------------------------------------------
+    # Health Check  {/* http://127.0.0.1:5000/health */}
+    # ------------------------------------------------------
     @app.route("/health", methods=["GET"])
     def health():
-        return {"status": "ok"}, 200
+        return {
+            "success": True,
+            "message": "Server is healthy.",
+            "status": "OK",
+            "data": None
+        }, 200
+
 
     # --------------------
     # Request logging
@@ -63,6 +87,7 @@ def create_app():
     @app.before_request
     def log_request():
         logging.info(f"{request.method} {request.path}")
+
 
     # --------------------
     # Error handling
@@ -75,5 +100,6 @@ def create_app():
     def handle_unexpected_exception(e):
         logging.exception(e)
         return error("Internal server error", 500)
+
 
     return app

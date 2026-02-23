@@ -19,7 +19,7 @@ from app.utils.validation_utils import (
     validate_date,
     validate_time,
     validate_time_range,
-    validate_enum,
+    validate_enum
 )
 
 __all__ = [
@@ -36,6 +36,6 @@ __all__ = [
     "validate_date",
     "validate_time",
     "validate_time_range",
-    "validate_enum",
+    "validate_enum"
 ]
 

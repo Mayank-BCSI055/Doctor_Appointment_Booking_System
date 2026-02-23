@@ -14,7 +14,7 @@ from app.services.appointment_service import (
     get_user_appointments,
     get_doctor_appointments,
     cancel_appointment,
-    complete_appointment,
+    complete_appointment
 )
 from app.services.user_service import update_user_profile
 from app.services.browse_service import (
