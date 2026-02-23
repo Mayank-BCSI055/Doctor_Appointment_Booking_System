@@ -9,6 +9,7 @@ import Home from "../pages/common/Home.jsx";
 import Contact from "../pages/common/Contact.jsx";
 import AboutUs from "../pages/common/AboutUs.jsx";
 import Login from "../pages/common/Login.jsx";
+import ForgotPassword from "./pages/auth/ForgotPassword";
 import Register from "../pages/common/Register.jsx";
 import Unauthorized from "../components/common/Unauthorized.jsx";
 
@@ -42,6 +43,7 @@ export default function AppRoutes() {
           </PublicRoute>
         }
       />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route
         path="/register"
         element={
