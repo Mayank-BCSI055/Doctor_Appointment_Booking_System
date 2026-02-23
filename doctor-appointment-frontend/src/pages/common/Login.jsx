@@ -164,7 +164,7 @@ export default function Login() {
 
             <span
               className="forgot-password"
-              onClick={() => nav("../auth/ForgotPassword.jsx")}
+              onClick={() => nav("/forgot-password")}
             >
               Forgot password?
             </span>
