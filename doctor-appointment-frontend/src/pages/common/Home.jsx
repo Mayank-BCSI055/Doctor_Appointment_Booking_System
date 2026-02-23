@@ -15,7 +15,10 @@ export default function Home() {
     { name: "Dr. Rahul Mehta", spec: "Orthopedic Surgeon", rating: 5, quote: "Movement is medicine." },
     { name: "Dr. Neha Verma", spec: "Dermatologist", rating: 4, quote: "Healthy skin reflects wellness." },
     { name: "Dr. Arjun Patel", spec: "Neurologist", rating: 5, quote: "The brain defines who we are." },
-    { name: "Dr. Pooja Nair", spec: "Gynecologist", rating: 4, quote: "Women’s health is family health." }
+    { name: "Dr. Pooja Nair", spec: "Gynecologist", rating: 4, quote: "Women’s health is family health." },
+    { name: "Dr. Vikram Singh", spec: "Pediatrician", rating: 5, quote: "Caring for little lives with big hearts." },
+    { name: "Dr. Sanya Kapoor", spec: "ENT Specialist", rating: 4, quote: "Clear hearing, clear life." },
+    { name: "Dr. Rohan Desai", spec: "General Physician", rating: 5, quote: "Your health, our mission." }
   ]), []);
 
   const orderedDoctors = useMemo(() => {

@@ -22,7 +22,7 @@ Backend :
   - pip install -r requirements.txt
       ----- or -----
     python -m pip install -r requirements.txt
-    
+
   - python run.py
 
 APIs :
@@ -92,11 +92,11 @@ APIs :
 
   Common encodings:
 
-    Character	Encoded
-        @   	%40
-        :   	%3A
-        /   	%2F
-        #   	%23
+      Character	Encoded
+          @   	%40
+          :   	%3A
+          /   	%2F
+          #   	%23
 
   Note : While using special characters in the DATABASE_URL, ensure they are URL-encoded as shown above.
 
@@ -124,5 +124,82 @@ GitHub / Git Command Reference :
         - git rm --cached filename
         - git commit -m "Removed file"
         - git push origin main
+
+    = To check the status of your git repository :
+
+        - git status
+
+    = To check the commit history :
+
+        - git log
+
+    = To check the commit history with a graph :
+
+        - git log --graph --oneline
+
+    = To check the commit history in a single line format :
+
+        - git log --oneline
+
+    = To check the commit history with a graph and all details :
+
+        - git log --graph --all
+
+    = To check the commit history with a graph and all details and show the changes in each commit :
+
+        - git log --graph --all -p
+
+    = To check the commit history with a graph and all details and show the changes in each commit and show the files changed in each commit :
+
+        - git log --graph --all -p --stat
+
+    = To check the commit history with a graph and all details and show the changes in each commit and show the files changed in each commit and show the author of each commit :
+
+        - git log --graph --all -p --stat --author
+
+    = To check the commit history with a graph and all details and show the changes in each commit and show the files changed in each commit and show the author of each commit and show the date of each commit :
+
+        - git log --graph --all -p --stat --author --date
+
+    = To check the commit history with a graph and all details and show the changes in each commit and show the files changed in each commit and show the author of each commit and show the date of each commit and show the commit message of each commit :
+
+        - git log --graph --all -p --stat --author --date --pretty=format:"%h - %an, %ar : %s"
+
+    = To check the commit history with a graph and all details and show the changes in each commit and show the files changed in each commit and show the author of each commit and show the date of each commit and show the commit message of each commit and show the branch of each commit :
+
+        - git log --graph --all -p --stat --author --date --pretty=format:"%h - %an, %ar : %s (%d)"
+
+    = To check the commit history with a graph and all details and show the changes in each commit and show the files changed in each commit and show the author of each commit and show the date of each commit and show the commit message of each commit and show the branch of each commit and show the email of each commit :
+
+        - git log --graph --all -p --stat --author --date --pretty=format:"%h - %an <%ae>, %ar : %s (%d)"
+
+    = To check the commit history with a graph and all details and show the changes in each commit and show the files changed in each commit and show the author of each commit and show the date of each commit and show the commit message of each commit and show the branch of each commit and show the email of each commit and show the hash of each commit :
+
+        - git log --graph --all -p --stat --author --date --pretty=format:"%h - %an <%ae>, %ar : %s (%d) [%H]"
+
+    = To delete a branch both locally and remotely :
+
+        - git branch -d branch_name
+        - git push origin --delete branch_name
+
+    = To create a new branch and switch to it :
+
+        - git checkout -b branch_name
+
+    = To switch to an existing branch :
+
+        - git checkout branch_name
+
+    = To merge a branch into the current branch :
+
+        - git merge branch_name
+
+    = To clear git bash history (use with caution) :
+
+        - history -c
+
+    = To clear git bash console (use with caution) :
+
+        - clear
 
 ===========================================================================================================
