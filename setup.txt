@@ -5,25 +5,25 @@ Doctor Appointment Booking System
 
 Frontend :
 
-- cd doctor-appointment-frontend
+  - cd doctor-appointment-frontend
 
-- npm install
-- npm run dev
+  - npm install
+  - npm run dev
 
 Backend :
 
-- cd doctor-appointment-backend
+  - cd doctor-appointment-backend
 
-- python -m venv env
-- source env/bin/activate  (Linux/Mac)
-- .\env\Scripts\activate     (Windows)
+  - python -m venv env
+  - source env/bin/activate  (Linux/Mac)
+  - .\env\Scripts\activate     (Windows)
 
-- python -m pip install --upgrade pip
-- pip install -r requirements.txt
-    ----- or -----
-  python -m pip install -r requirements.txt
-  
-- python run.py
+  - python -m pip install --upgrade pip
+  - pip install -r requirements.txt
+      ----- or -----
+    python -m pip install -r requirements.txt
+    
+  - python run.py
 
 APIs :
 
@@ -101,3 +101,23 @@ Common encodings:
   Note: While using special characters in the DATABASE_URL, ensure they are URL-encoded as shown above.
 
 ------------------------------------------------------------------------------------------------------
+
+GitHub / Git Command Reference :
+
+= To add updated files to git and push to GitHub :
+- git init
+- git add .
+- git commit -m "Initial commit"
+- git branch -M main
+- git remote add origin
+- git push -u origin main
+
+= To remove a file from git and push the changes to GitHub :
+- git rm filename
+- git commit -m "Removed file"
+- git push origin main
+
+= If you want to remove it from the commit but keep it in your local folder :
+- git rm --cached filename
+- git commit -m "Removed file"
+- git push origin main

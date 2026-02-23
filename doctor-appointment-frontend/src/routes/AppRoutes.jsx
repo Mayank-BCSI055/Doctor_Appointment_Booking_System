@@ -6,6 +6,7 @@ import PublicRoute from "../auth/PublicRoutes.jsx";
 /* Common pages */
 import Home from "../pages/common/Home.jsx";
 import Contact from "../pages/common/Contact.jsx";
+import AboutUs from "../pages/common/AboutUs.jsx";
 import Login from "../pages/common/Login.jsx";
 import Register from "../pages/common/Register.jsx";
 import Unauthorized from "../components/common/Unauthorized.jsx";
